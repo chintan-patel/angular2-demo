@@ -1,6 +1,7 @@
 /// <reference path="../typings/tsd.d.ts" />
-import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
-import * as FriendsService from 'components/friends.service';
+import { Component, View, FORM_DIRECTIVES, bootstrap, NgFor} from 'angular2/angular2';
+import { FriendsService } from './friends.service';
+import {HTTP_BINDINGS, Http, BaseRequestOptions, RequestOptions} from 'angular2/http';
 
 @Component({
     selector: 'display',
@@ -9,21 +10,28 @@ import * as FriendsService from 'components/friends.service';
 
 @View({
     templateUrl: 'components/show-properties.html',
-    directives: [NgFor]
+    directives: [NgFor, FORM_DIRECTIVES]
 })
 
 class DisplayComponent {
-    myName: string;
+    public myname: string;
     names: Array<string>;
 
     constructor(friendsService: FriendsService) {
-        this.myName = 'Alice';
-        this.names  = friendsService.names;
+        friendsService.getUsers()
+            .then((users) => {
+                this.names = users;
+            });
+
+        //this.names  = friendsService.names;
     }
 
     addNames(name: string) {
-        console.log(name);
-        this.names.push(name);
+        if(this.myname)
+        {
+            this.names.push(this.myname);
+            this.myname = '';
+        }
     }
 
     update(){

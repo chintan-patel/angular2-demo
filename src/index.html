@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <script src="../node_modules/traceur/bin/traceur-runtime.js"></script>
     <script src="../node_modules/es6-module-loader/dist/es6-module-loader.js"></script>
     <script src="../node_modules/systemjs/dist/system.src.js"></script>
     <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
-  </head>
-  <body>
-    <display></display>
-     <script>
-      System.import('components/show-properties');
-    </script>
-  </body>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="./components/main.css" />
+</head>
+
+<body>
+    <div class="container">
+        <display>
+            <div id="fountainG">
+                <div id="fountainG_1" class="fountainG"></div>
+                <div id="fountainG_2" class="fountainG"></div>
+                <div id="fountainG_3" class="fountainG"></div>
+                <div id="fountainG_4" class="fountainG"></div>
+                <div id="fountainG_5" class="fountainG"></div>
+                <div id="fountainG_6" class="fountainG"></div>
+                <div id="fountainG_7" class="fountainG"></div>
+                <div id="fountainG_8" class="fountainG"></div>
+            </div>
+        </display>
+        <script>
+            System.import('components/show-properties');
+        </script>
+    </div>
+</body>
+
 </html>
