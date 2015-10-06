@@ -1,0 +1,9 @@
+<p>My name: {{ myname.value }}</p>
+<p>Friends:</p>
+<ul>
+    <li *ng-for="#name of names">
+        {{ name }}
+    </li>
+</ul>
+<input #myname (keyup)="update()" />
+<button (click)="addNames(myname.value)">Add Names</button>
