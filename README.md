@@ -1,2 +1,8 @@
-# angular2-demo
-Demo for Angular 2
+# To install
+`npm install`
+
+##To run server
+
+`npm start`
+
+`cd src; tsc -w` 
