@@ -1,8 +1,11 @@
-# To install
-`npm install`
+# Steps to run this application
 
-##To run server
+1. Run `gulp`
 
-`npm start`
+1. `cd dist`
 
-`cd src; tsc -w` 
+1. Run `npm install`
+
+1. Start server `live-server`
+
+1. Go to browser with URL: `http://localhost:8080`
