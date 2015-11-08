@@ -9,5 +9,3 @@
 1. Start server `live-server`
 
 1. Go to browser with URL: `http://localhost:8080`
-
-
