@@ -19,3 +19,5 @@
 1. Build the image: `docker build -t angular-2-demo-image .`
 
 1. `docker run --rm -p 8080:8080 angular-2-demo-image`
+
+1. Generate URL for this application: `echo http://$(docker-machine ip default):8080/`
