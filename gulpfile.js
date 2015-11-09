@@ -15,7 +15,7 @@ var config = {
 }
 
 gulp.task('clean', function (done) {
-	gulp.src(config.dist, { read: false })
+	gulp.src(config.dist)
 		.pipe(vinylPath(del));
 });
 gulp.task('copy:html', function () {
