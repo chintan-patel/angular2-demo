@@ -6,7 +6,7 @@ MAINTAINER Chintan Patel
 RUN npm install -g live-server
 CMD ["npm", "start"]
 ## Expose the PORT
-EXPOSE 8080
+ENV NODE_ENV production
 WORKDIR /opt/app/
 COPY dist/package.json /opt/app/
 RUN npm install
