@@ -6,10 +6,10 @@ var vinylPath = require('vinyl-paths');
 
 var config = {
 	sourceFile: {
-		js: ['src/**/*.js', 'src/**/*.js.map'],
+		js: ['app/**/*.js', 'app/**/*.js.map'],
 		packageJson: ['package.json'],
-		css: ['src/**/*.css'],
-		html: ['src/**/*.html']
+		css: ['app/**/*.css'],
+		html: ['app/**/*.html']
 	},
 	dist: './dist/'
 }
