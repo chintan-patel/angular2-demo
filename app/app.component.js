@@ -11,7 +11,7 @@ System.register(['angular2/core', './tweet.service', 'angular2/http'], function(
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, tweet_service_1, http_1;
-    var AppComponent, HEROES;
+    var AppComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -26,52 +26,77 @@ System.register(['angular2/core', './tweet.service', 'angular2/http'], function(
         execute: function() {
             AppComponent = (function () {
                 function AppComponent(_tweetService) {
+                    var _this = this;
                     this._tweetService = _tweetService;
                     this.title = 'Social Sentiment Analyzer';
-                    this.heroes = HEROES;
-                    this.twitterHandle = '#trump';
                     this.xkey = 'y';
-                    this.ykeys = ["a"];
-                    this.labels = ["Comments"];
-                    this.colors = ["#feb155"];
+                    this.ykeys = ['a'];
+                    this.labels = ['words'];
+                    this.colors = ['#feb155', 'red', 'blue', 'green'];
+                    this.history = [];
+                    this.tableView = false;
+                    this.options = {
+                        // ID of the element in which to draw the chart.
+                        element: 'chart',
+                        ymax: 'auto',
+                        ymin: 'auto',
+                        // Chart data records -- each entry in this array corresponds to a point on
+                        // the chart.
+                        data: [],
+                        resize: true,
+                        // The name of the data record attribute that contains x-values.
+                        xkey: this.xkey,
+                        // A list of names of data record attributes that contain y-values.
+                        ykeys: this.ykeys,
+                        // Labels for the ykeys -- will be displayed when you hover over the
+                        // chart.
+                        labels: this.labels
+                    };
+                    this._tweetService.getHistory()
+                        .subscribe(function (response) { return _this.history = response; });
                 }
-                AppComponent.prototype.getTweet = function () {
+                AppComponent.prototype.toggleTableView = function () {
+                    this.tableView = !this.tableView;
+                };
+                AppComponent.prototype.getSentiments = function () {
                     var _this = this;
-                    this._tweetService.getTweets()
+                    this._tweetService.getSentiments(this.twitterHandle)
                         .subscribe(function (results) {
                         _this.analysis = _this.createChartValues(results);
                         _this.tweets = results;
-                        new Morris.Line({
-                            // ID of the element in which to draw the chart.
-                            element: 'chart',
-                            // Chart data records -- each entry in this array corresponds to a point on
-                            // the chart.
-                            data: _this.analysis,
-                            // The name of the data record attribute that contains x-values.
-                            xkey: _this.xkey,
-                            // A list of names of data record attributes that contain y-values.
-                            ykeys: _this.ykeys,
-                            // Labels for the ykeys -- will be displayed when you hover over the
-                            // chart.
-                            labels: _this.labels
-                        });
+                        _this.createGraph();
                     });
+                };
+                AppComponent.prototype.getTweet = function (_id) {
+                    var _this = this;
+                    this._tweetService.getTweets(_id)
+                        .subscribe(function (results) {
+                        _this.analysis = _this.createChartValues(results);
+                        _this.tweets = results;
+                        _this.createGraph();
+                    });
+                };
+                AppComponent.prototype.createGraph = function () {
+                    if (this.chart) {
+                        this.chart.setData(this.analysis);
+                    }
+                    else {
+                        this.options.data = this.analysis;
+                        this.chart = Morris.Line(this.options);
+                    }
                 };
                 AppComponent.prototype.createChartValues = function (data) {
                     var values = [];
-                    console.log(data);
                     for (var i = 0; i < data.length; i++) {
                         var tmp = {
                             y: i + 1,
-                            a: (data[i].score > 0) ? data[i].score : 0
+                            a: data[i].score
                         };
                         values.push(tmp);
                     }
                     ;
-                    console.log(values);
                     return values;
                 };
-                AppComponent.prototype.onSelect = function (hero) { this.selectedHero = hero; };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'main-view',
@@ -84,18 +109,6 @@ System.register(['angular2/core', './tweet.service', 'angular2/http'], function(
                 return AppComponent;
             }());
             exports_1("AppComponent", AppComponent);
-            HEROES = [
-                { "id": 11, "name": "Mr. Nice" },
-                { "id": 12, "name": "Narco" },
-                { "id": 13, "name": "Bombasto" },
-                { "id": 14, "name": "Celeritas" },
-                { "id": 15, "name": "Magneta" },
-                { "id": 16, "name": "RubberMan" },
-                { "id": 17, "name": "Dynama" },
-                { "id": 18, "name": "Dr IQ" },
-                { "id": 19, "name": "Magma" },
-                { "id": 20, "name": "Tornado" }
-            ];
         }
     }
 });
