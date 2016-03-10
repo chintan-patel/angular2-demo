@@ -22,5 +22,3 @@ RUN npm install
 
 # Copy the source code from `dist` except node_modules
 COPY dist /opt/app/
-
-
