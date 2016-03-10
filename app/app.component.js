@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', './tweet.service', 'angular2/http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,27 +10,76 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, tweet_service_1, http_1;
     var AppComponent, HEROES;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (tweet_service_1_1) {
+                tweet_service_1 = tweet_service_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
-                    this.title = 'Tour of Heroes';
+                function AppComponent(_tweetService) {
+                    this._tweetService = _tweetService;
+                    this.title = 'Social Sentiment Analyzer';
                     this.heroes = HEROES;
+                    this.twitterHandle = '#trump';
+                    this.xkey = 'y';
+                    this.ykeys = ["a"];
+                    this.labels = ["Comments"];
+                    this.colors = ["#feb155"];
                 }
+                AppComponent.prototype.getTweet = function () {
+                    var _this = this;
+                    this._tweetService.getTweets()
+                        .subscribe(function (results) {
+                        _this.analysis = _this.createChartValues(results);
+                        _this.tweets = results;
+                        new Morris.Line({
+                            // ID of the element in which to draw the chart.
+                            element: 'chart',
+                            // Chart data records -- each entry in this array corresponds to a point on
+                            // the chart.
+                            data: _this.analysis,
+                            // The name of the data record attribute that contains x-values.
+                            xkey: _this.xkey,
+                            // A list of names of data record attributes that contain y-values.
+                            ykeys: _this.ykeys,
+                            // Labels for the ykeys -- will be displayed when you hover over the
+                            // chart.
+                            labels: _this.labels
+                        });
+                    });
+                };
+                AppComponent.prototype.createChartValues = function (data) {
+                    var values = [];
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        var tmp = {
+                            y: i + 1,
+                            a: (data[i].score > 0) ? data[i].score : 0
+                        };
+                        values.push(tmp);
+                    }
+                    ;
+                    console.log(values);
+                    return values;
+                };
                 AppComponent.prototype.onSelect = function (hero) { this.selectedHero = hero; };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'main-view',
-                        template: "\n    <h1>{{title}}</h1>\n    <h2>My Heroes</h2>\n    <ul class=\"heroes\">\n      <li *ngFor=\"#hero of heroes\"\n        [class.selected]=\"hero === selectedHero\"\n        (click)=\"onSelect(hero)\">\n        <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n      </li>\n    </ul>\n    <div *ngIf=\"selectedHero\">\n      <h2>{{selectedHero.name}} details!</h2>\n      <div><label>id: </label>{{selectedHero.id}}</div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"selectedHero.name\" placeholder=\"name\"/>\n      </div>\n    </div>\n  ",
-                        styles: ["\n    .selected {\n      background-color: #CFD8DC !important;\n      color: white;\n    }\n    .heroes {\n      margin: 0 0 2em 0;\n      list-style-type: none;\n      padding: 0;\n      width: 10em;\n    }\n    .heroes li {\n      cursor: pointer;\n      position: relative;\n      left: 0;\n      background-color: #EEE;\n      margin: .5em;\n      padding: .3em 0;\n      height: 1.6em;\n      border-radius: 4px;\n    }\n    .heroes li.selected:hover {\n      background-color: #BBD8DC !important;\n      color: white;\n    }\n    .heroes li:hover {\n      color: #607D8B;\n      background-color: #DDD;\n      left: .1em;\n    }\n    .heroes .text {\n      position: relative;\n      top: -3px;\n    }\n    .heroes .badge {\n      display: inline-block;\n      font-size: small;\n      color: white;\n      padding: 0.8em 0.7em 0 0.7em;\n      background-color: #607D8B;\n      line-height: 1em;\n      position: relative;\n      left: -1px;\n      top: -4px;\n      height: 1.8em;\n      margin-right: .8em;\n      border-radius: 4px 0 0 4px;\n    }\n  "]
+                        templateUrl: 'app/hero.html',
+                        styleUrls: ['app/hero.css'],
+                        providers: [tweet_service_1.TweetService, http_1.HTTP_PROVIDERS]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [tweet_service_1.TweetService])
                 ], AppComponent);
                 return AppComponent;
             }());
