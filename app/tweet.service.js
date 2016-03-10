@@ -26,11 +26,21 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                 function TweetService(_http) {
                     this._http = _http;
                 }
-                TweetService.prototype.getTweets = function () {
-                    return this._http.get('/api/tweets.json')
+                TweetService.prototype.getSentiments = function (hash) {
+                    return this._http.post('/api/words/' + hash, '')
+                        .map(function (response) {
+                        return response.json().analysis.analysis;
+                    });
+                };
+                TweetService.prototype.getTweets = function (_id) {
+                    return this._http.get('/api/record/' + _id)
                         .map(function (response) {
                         return response.json().analysis;
                     });
+                };
+                TweetService.prototype.getHistory = function () {
+                    return this._http.get('/api/words/history')
+                        .map(function (respones) { return respones.json(); });
                 };
                 TweetService = __decorate([
                     core_1.Injectable(), 
