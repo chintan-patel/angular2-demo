@@ -22,20 +22,13 @@ twitterHandle;
     chart: any;
     tableView: boolean = false;
     options: any = {
-        // ID of the element in which to draw the chart.
         element: 'chart',
         ymax: 'auto',
         ymin: 'auto',
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
         data: [],
         resize: true,
-        // The name of the data record attribute that contains x-values.
         xkey: this.xkey,
-        // A list of names of data record attributes that contain y-values.
         ykeys: this.ykeys,
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
         labels: this.labels
     }
     constructor(private _tweetService: TweetService) {
@@ -48,14 +41,7 @@ twitterHandle;
     getDate(date) {
         return new Date(date);
     }
-    getSentiments() {
-        this._tweetService.getSentiments(this.twitterHandle)
-            .subscribe(results => {
-                this.analysis = this.createChartValues(results);
-                this.tweets = results;
-                this.createGraph();
-            });
-    }
+
     getTweet(_id: string) {
         this._tweetService.getTweets(_id)
             .subscribe(results => {

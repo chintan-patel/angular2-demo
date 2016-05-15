@@ -35,20 +35,13 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                     this.history = [];
                     this.tableView = false;
                     this.options = {
-                        // ID of the element in which to draw the chart.
                         element: 'chart',
                         ymax: 'auto',
                         ymin: 'auto',
-                        // Chart data records -- each entry in this array corresponds to a point on
-                        // the chart.
                         data: [],
                         resize: true,
-                        // The name of the data record attribute that contains x-values.
                         xkey: this.xkey,
-                        // A list of names of data record attributes that contain y-values.
                         ykeys: this.ykeys,
-                        // Labels for the ykeys -- will be displayed when you hover over the
-                        // chart.
                         labels: this.labels
                     };
                     this._tweetService.getHistory()
@@ -59,15 +52,6 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                 };
                 HistoryComponent.prototype.getDate = function (date) {
                     return new Date(date);
-                };
-                HistoryComponent.prototype.getSentiments = function () {
-                    var _this = this;
-                    this._tweetService.getSentiments(this.twitterHandle)
-                        .subscribe(function (results) {
-                        _this.analysis = _this.createChartValues(results);
-                        _this.tweets = results;
-                        _this.createGraph();
-                    });
                 };
                 HistoryComponent.prototype.getTweet = function (_id) {
                     var _this = this;
