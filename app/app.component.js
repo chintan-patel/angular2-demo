@@ -100,8 +100,8 @@ System.register(['angular2/core', './tweet.service', 'angular2/http'], function(
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'main-view',
-                        templateUrl: 'app/hero.html',
-                        styleUrls: ['app/hero.css'],
+                        templateUrl: 'app/app.component.html',
+                        styleUrls: ['app/app.component.css'],
                         providers: [tweet_service_1.TweetService, http_1.HTTP_PROVIDERS]
                     }), 
                     __metadata('design:paramtypes', [tweet_service_1.TweetService])

@@ -5,8 +5,8 @@ import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 
 @Component({
     selector: 'main-view',
-    templateUrl: 'app/hero.html',
-    styleUrls: ['app/hero.css'],
+    templateUrl: 'app/app.component.html',
+    styleUrls: ['app/app.component.css'],
     providers: [TweetService, HTTP_PROVIDERS]
 
 })
