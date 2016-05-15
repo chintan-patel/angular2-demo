@@ -1,4 +1,4 @@
-System.register(['angular2/core', './history-details/history.component'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,15 +10,12 @@ System.register(['angular2/core', './history-details/history.component'], functi
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, history_component_1;
+    var core_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (history_component_1_1) {
-                history_component_1 = history_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -27,9 +24,8 @@ System.register(['angular2/core', './history-details/history.component'], functi
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'main-view',
-                        templateUrl: 'app/history/home.component.html',
-                        styleUrls: ['app/history/home.component.css'],
-                        directives: [history_component_1.HistoryComponent]
+                        templateUrl: 'app/home/home.component.html',
+                        styleUrls: ['app/home/home.component.css']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

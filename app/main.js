@@ -1,4 +1,4 @@
-System.register(['angular2/platform/browser', './history/home.component'], function(exports_1, context_1) {
+System.register(['angular2/platform/browser', './home/home.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var browser_1, home_component_1;
