@@ -1,18 +1,17 @@
 import {Component} from 'angular2/core';
-import {TweetService} from '../tweet.service';
+import {TweetService} from '../../tweet.service';
 import {HTTP_PROVIDERS} from 'angular2/http';
-import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 
 @Component({
-    selector: 'main-view',
-    templateUrl: 'app/history/app.component.html',
-    styleUrls: ['app/history/app.component.css'],
+    selector: 'history-detail',
+    templateUrl: 'app/history/history-details/history.component.html',
+    styleUrls: ['app/history/history-details/history.component.css'],
     providers: [TweetService, HTTP_PROVIDERS]
+
 })
 
-export class AppComponent {
-    title = 'Social Sentiment Analyzer';
-    twitterHandle;
+export class HistoryComponent {
+twitterHandle;
     tweets: Array<any>;
     analysis: any;
     xkey = 'y';

@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../tweet.service', 'angular2/http'], function(exports_1, context_1) {
+System.register(['angular2/core', '../../tweet.service', 'angular2/http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, tweet_service_1, http_1;
-    var AppComponent;
+    var HistoryComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -24,11 +24,10 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                 http_1 = http_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent(_tweetService) {
+            HistoryComponent = (function () {
+                function HistoryComponent(_tweetService) {
                     var _this = this;
                     this._tweetService = _tweetService;
-                    this.title = 'Social Sentiment Analyzer';
                     this.xkey = 'y';
                     this.ykeys = ['a'];
                     this.labels = ['words'];
@@ -55,13 +54,13 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                     this._tweetService.getHistory()
                         .subscribe(function (response) { return _this.history = response; });
                 }
-                AppComponent.prototype.toggleTableView = function () {
+                HistoryComponent.prototype.toggleTableView = function () {
                     this.tableView = !this.tableView;
                 };
-                AppComponent.prototype.getDate = function (date) {
+                HistoryComponent.prototype.getDate = function (date) {
                     return new Date(date);
                 };
-                AppComponent.prototype.getSentiments = function () {
+                HistoryComponent.prototype.getSentiments = function () {
                     var _this = this;
                     this._tweetService.getSentiments(this.twitterHandle)
                         .subscribe(function (results) {
@@ -70,7 +69,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                         _this.createGraph();
                     });
                 };
-                AppComponent.prototype.getTweet = function (_id) {
+                HistoryComponent.prototype.getTweet = function (_id) {
                     var _this = this;
                     this._tweetService.getTweets(_id)
                         .subscribe(function (results) {
@@ -80,7 +79,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                         _this.twitterHandle = results.searchHash;
                     });
                 };
-                AppComponent.prototype.createGraph = function () {
+                HistoryComponent.prototype.createGraph = function () {
                     if (this.chart) {
                         this.chart.setData(this.analysis);
                     }
@@ -89,7 +88,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                         this.chart = Morris.Line(this.options);
                     }
                 };
-                AppComponent.prototype.createChartValues = function (data) {
+                HistoryComponent.prototype.createChartValues = function (data) {
                     var values = [];
                     for (var i = 0; i < data.length; i++) {
                         var tmp = {
@@ -101,19 +100,19 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                     ;
                     return values;
                 };
-                AppComponent = __decorate([
+                HistoryComponent = __decorate([
                     core_1.Component({
-                        selector: 'main-view',
-                        templateUrl: 'app/history/app.component.html',
-                        styleUrls: ['app/history/app.component.css'],
+                        selector: 'history-detail',
+                        templateUrl: 'app/history/history-details/history.component.html',
+                        styleUrls: ['app/history/history-details/history.component.css'],
                         providers: [tweet_service_1.TweetService, http_1.HTTP_PROVIDERS]
                     }), 
                     __metadata('design:paramtypes', [tweet_service_1.TweetService])
-                ], AppComponent);
-                return AppComponent;
+                ], HistoryComponent);
+                return HistoryComponent;
             }());
-            exports_1("AppComponent", AppComponent);
+            exports_1("HistoryComponent", HistoryComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=history.component.js.map
