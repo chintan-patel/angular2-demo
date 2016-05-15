@@ -1,15 +1,15 @@
 import {Component} from 'angular2/core';
-import {TweetService} from './tweet.service';
+import {TweetService} from '../tweet.service';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 
 @Component({
     selector: 'main-view',
-    templateUrl: 'app/app.component.html',
-    styleUrls: ['app/app.component.css'],
+    templateUrl: 'app/history/app.component.html',
+    styleUrls: ['app/history/app.component.css'],
     providers: [TweetService, HTTP_PROVIDERS]
-
 })
+
 export class AppComponent {
     title = 'Social Sentiment Analyzer';
     twitterHandle;
@@ -46,6 +46,9 @@ export class AppComponent {
     toggleTableView() {
         this.tableView = !this.tableView;
     }
+    getDate(date) {
+        return new Date(date);
+    }
     getSentiments() {
         this._tweetService.getSentiments(this.twitterHandle)
             .subscribe(results => {
@@ -60,6 +63,7 @@ export class AppComponent {
                 this.analysis = this.createChartValues(results);
                 this.tweets = results;
                 this.createGraph();
+                this.twitterHandle = results.searchHash;
             });
     }
     createGraph() {

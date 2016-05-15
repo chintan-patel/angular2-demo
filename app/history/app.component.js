@@ -1,4 +1,4 @@
-System.register(['angular2/core', './tweet.service', 'angular2/http'], function(exports_1, context_1) {
+System.register(['angular2/core', '../tweet.service', 'angular2/http'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -58,6 +58,9 @@ System.register(['angular2/core', './tweet.service', 'angular2/http'], function(
                 AppComponent.prototype.toggleTableView = function () {
                     this.tableView = !this.tableView;
                 };
+                AppComponent.prototype.getDate = function (date) {
+                    return new Date(date);
+                };
                 AppComponent.prototype.getSentiments = function () {
                     var _this = this;
                     this._tweetService.getSentiments(this.twitterHandle)
@@ -74,6 +77,7 @@ System.register(['angular2/core', './tweet.service', 'angular2/http'], function(
                         _this.analysis = _this.createChartValues(results);
                         _this.tweets = results;
                         _this.createGraph();
+                        _this.twitterHandle = results.searchHash;
                     });
                 };
                 AppComponent.prototype.createGraph = function () {
@@ -100,8 +104,8 @@ System.register(['angular2/core', './tweet.service', 'angular2/http'], function(
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'main-view',
-                        templateUrl: 'app/app.component.html',
-                        styleUrls: ['app/app.component.css'],
+                        templateUrl: 'app/history/app.component.html',
+                        styleUrls: ['app/history/app.component.css'],
                         providers: [tweet_service_1.TweetService, http_1.HTTP_PROVIDERS]
                     }), 
                     __metadata('design:paramtypes', [tweet_service_1.TweetService])
