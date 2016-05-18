@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {TweetService} from '../tweet.service';
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {HTTP_PROVIDERS} from 'angular2/http';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {HistoryComponent} from '../history/history.component';
 import {SearchComponent} from '../search/search.component';
 
@@ -18,4 +18,10 @@ import {SearchComponent} from '../search/search.component';
     {path: '/', name: 'Search', component: SearchComponent},
     {path: '/history', name: 'History', component: HistoryComponent},
 ])
-export class HomeComponent {}
+export class HomeComponent {
+    constructor(private router: Router) {
+        router.subscribe((val) => {
+           console.log(val);
+        });
+    }
+}

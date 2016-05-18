@@ -34,7 +34,11 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
             }],
         execute: function() {
             HomeComponent = (function () {
-                function HomeComponent() {
+                function HomeComponent(router) {
+                    this.router = router;
+                    router.subscribe(function (val) {
+                        console.log(val);
+                    });
                 }
                 HomeComponent = __decorate([
                     core_1.Component({
@@ -48,7 +52,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
                         { path: '/', name: 'Search', component: search_component_1.SearchComponent },
                         { path: '/history', name: 'History', component: history_component_1.HistoryComponent },
                     ]), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.Router])
                 ], HomeComponent);
                 return HomeComponent;
             }());

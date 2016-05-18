@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../tweet.service', 'angular2/http'], function(exports_1, context_1) {
+System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2/common'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, tweet_service_1, http_1;
+    var core_1, tweet_service_1, http_1, common_1;
     var HistoryComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
             }],
         execute: function() {
             HistoryComponent = (function () {
@@ -44,8 +47,13 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                         ykeys: this.ykeys,
                         labels: this.labels
                     };
+                    this.loading = false;
+                    this.loading = true;
                     this._tweetService.getHistory()
-                        .subscribe(function (response) { return _this.history = response; });
+                        .subscribe(function (response) {
+                        _this.loading = false;
+                        _this.history = response;
+                    });
                 }
                 HistoryComponent.prototype.toggleTableView = function () {
                     this.tableView = !this.tableView;
@@ -89,7 +97,8 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                         selector: 'history-detail',
                         templateUrl: 'app/history/history.component.html',
                         styleUrls: ['app/history/history.component.css'],
-                        providers: [tweet_service_1.TweetService, http_1.HTTP_PROVIDERS]
+                        providers: [tweet_service_1.TweetService, http_1.HTTP_PROVIDERS],
+                        directives: [common_1.NgIf]
                     }), 
                     __metadata('design:paramtypes', [tweet_service_1.TweetService])
                 ], HistoryComponent);

@@ -1,13 +1,14 @@
 import {Component} from 'angular2/core';
 import {TweetService} from '../tweet.service';
 import {HTTP_PROVIDERS} from 'angular2/http';
+import {NgIf} from 'angular2/common';
 
 @Component({
     selector: 'history-detail',
     templateUrl: 'app/history/history.component.html',
     styleUrls: ['app/history/history.component.css'],
-    providers: [TweetService, HTTP_PROVIDERS]
-
+    providers: [TweetService, HTTP_PROVIDERS],
+    directives: [NgIf]
 })
 
 export class HistoryComponent {
@@ -31,9 +32,14 @@ twitterHandle;
         ykeys: this.ykeys,
         labels: this.labels
     }
+    loading = false;
     constructor(private _tweetService: TweetService) {
+        this.loading = true;
         this._tweetService.getHistory()
-            .subscribe(response => this.history = response);
+            .subscribe(response => {
+                this.loading = false;
+                this.history = response;
+            });
     }
     toggleTableView() {
         this.tableView = !this.tableView;
