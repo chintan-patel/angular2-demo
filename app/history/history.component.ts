@@ -4,8 +4,8 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
     selector: 'history-detail',
-    templateUrl: 'app/history/history-details/history.component.html',
-    styleUrls: ['app/history/history-details/history.component.css'],
+    templateUrl: 'app/history/history.component.html',
+    styleUrls: ['app/history/history.component.css'],
     providers: [TweetService, HTTP_PROVIDERS]
 
 })

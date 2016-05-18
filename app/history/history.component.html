@@ -1,14 +1,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <h3>History</h3>
+            <div id="chart"></div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <ul class="unstyled history">
                 <li *ngFor="#eachTweet of history" *ngForTrackBy="created_on">
-                    <a href="#" (click)="getTweet(eachTweet._id)">{{eachTweet.searchHash}}</a>
+                    <a (click)="getTweet(eachTweet._id)">{{eachTweet.searchHash}}</a>
                     <div class="info">{{ getDate(eachTweet.created_on) | date:'medium' }}</div>
                 </li>
             </ul>

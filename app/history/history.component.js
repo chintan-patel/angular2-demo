@@ -87,8 +87,8 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                 HistoryComponent = __decorate([
                     core_1.Component({
                         selector: 'history-detail',
-                        templateUrl: 'app/history/history-details/history.component.html',
-                        styleUrls: ['app/history/history-details/history.component.css'],
+                        templateUrl: 'app/history/history.component.html',
+                        styleUrls: ['app/history/history.component.css'],
                         providers: [tweet_service_1.TweetService, http_1.HTTP_PROVIDERS]
                     }), 
                     __metadata('design:paramtypes', [tweet_service_1.TweetService])
