@@ -41,7 +41,7 @@ function putWords(req, res) {
 //////////////
 function getRecord(req, res) {
 	var record_id = req.params.record_id;
-	words.findById(record_id, function (err, data) {
+	words.findOne({_id: record_id, delete: false}, function (err, data) {
 		if (err) {
 			res.status(400).send(err);
 		}
