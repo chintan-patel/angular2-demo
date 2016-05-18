@@ -38,6 +38,13 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                         return response.json().analysis;
                     });
                 };
+                TweetService.prototype.putTweets = function (tweet) {
+                    var body = JSON.stringify(tweet);
+                    return this._http.put('/api/words', body)
+                        .map(function (response) {
+                        return response.json().analysis;
+                    });
+                };
                 TweetService.prototype.getHistory = function () {
                     return this._http.get('/api/words/history')
                         .map(function (respones) { return respones.json(); });

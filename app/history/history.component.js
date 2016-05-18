@@ -92,6 +92,14 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
                     ;
                     return values;
                 };
+                HistoryComponent.prototype.deleteTweet = function (tweet) {
+                    var _this = this;
+                    tweet.delete = true;
+                    this._tweetService.putTweets(tweet)
+                        .subscribe(function (results) {
+                        _this.tweets = results;
+                    });
+                };
                 HistoryComponent = __decorate([
                     core_1.Component({
                         selector: 'history-detail',

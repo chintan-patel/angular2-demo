@@ -20,6 +20,13 @@ export class TweetService {
                 return response.json().analysis;
             });
     }
+    putTweets(tweet : any) {
+        var body = JSON.stringify(tweet);
+        return this._http.put('/api/words', body)
+            .map(response => {
+                return response.json().analysis;
+            });
+    }
     getHistory() {
         return this._http.get('/api/words/history')
             .map(respones => respones.json());

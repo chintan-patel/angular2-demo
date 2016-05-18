@@ -14,3 +14,7 @@ ul.history {
     float: right;
     font-size: .8em;
 }
+.history li .delete-button {
+    float: right;
+    font-size: 0.9em;
+}

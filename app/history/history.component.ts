@@ -77,4 +77,11 @@ twitterHandle;
         };
         return values;
     }
+    deleteTweet (tweet) {
+        tweet.delete = true;
+        this._tweetService.putTweets(tweet)
+            .subscribe(results => {
+                this.tweets = results;
+            });
+    }
 }

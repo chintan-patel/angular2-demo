@@ -20,6 +20,7 @@
             <ul class="unstyled history">
                 <li *ngFor="#eachTweet of history" *ngForTrackBy="created_on">
                     <a (click)="getTweet(eachTweet._id)">{{eachTweet.searchHash}}</a>
+                    <a class="delete-button" (click)="deleteTweet(eachTweet)"><i class="glyphicon glyphicon-remove"></i></a>
                     <div class="info">{{ getDate(eachTweet.created_on) | date:'medium' }}</div>
                 </li>
             </ul>
