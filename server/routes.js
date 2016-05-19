@@ -9,7 +9,7 @@ var twitter = require('twitter');
 var twClient = new twitter(twitterCredentials);
 
 router.post('/words/:words', postWords);
-router.put('/words', putWords);
+router.put('/words/:record_id', putWords);
 router.get('/record/:record_id', getRecord);
 router.get('/words/history', getWordHistory);
 router.get('/chintan', testTwitter);
@@ -18,22 +18,22 @@ router.get('/*', four0four.notFoundMiddleware);
 module.exports = router;
 //////////////
 function putWords(req, res) {
-	var record_id = req.body.record_id;
-	var deleteFlag = req.body.delete;
-	console.log(req.body);
+	var record_id = req.params.record_id;
 	words.findById(record_id, function (err, data) {
 		if (err) {
 			res.status(400).send(err);
 		}
-		console.log(data);
+		console.log(JSON.stringify(data));
 		if (data) {
-			data.delete = deleteFlag;
+			data.delete = true;
 			data.update(function (err, data) {
 				if (err) {
 					res.status(400).send(err);
 				}
 				res.status(200).send(data);
 			});
+		} else {
+			res.status(404).send({msg: 'Not Found'});
 		}
 	});
 };
@@ -56,7 +56,6 @@ function testTwitter(req, res) {
 		}
 		console.log(data);
 		res.send(data);
-
 	});
 }
 
@@ -88,7 +87,7 @@ function postWords(req, res) {
 };
 
 function getWordHistory(req, res) {
-	words.find({}, function (err, data) {
+	words.find({delete: false}, function (err, data) {
 		if (err) {
 			res.status(400).send(err);
 		}

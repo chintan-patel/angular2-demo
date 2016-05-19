@@ -38,16 +38,18 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                         return response.json().analysis;
                     });
                 };
-                TweetService.prototype.putTweets = function (tweet) {
-                    var body = JSON.stringify(tweet);
-                    return this._http.put('/api/words', body)
+                TweetService.prototype.putTweets = function (tweet_id) {
+                    var headers = new http_1.Headers();
+                    console.log(tweet_id);
+                    //headers.append('Content-Type', 'application/x-www-form-urlencoded');
+                    return this._http.put('/api/words/' + tweet_id, '')
                         .map(function (response) {
                         return response.json().analysis;
                     });
                 };
                 TweetService.prototype.getHistory = function () {
                     return this._http.get('/api/words/history')
-                        .map(function (respones) { return respones.json(); });
+                        .map(function (response) { return response.json(); });
                 };
                 TweetService = __decorate([
                     core_1.Injectable(), 

@@ -92,13 +92,14 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
                     ;
                     return values;
                 };
-                HistoryComponent.prototype.deleteTweet = function (tweet) {
+                HistoryComponent.prototype.deleteTweet = function (id) {
                     var _this = this;
-                    tweet.delete = true;
-                    this._tweetService.putTweets(tweet)
-                        .subscribe(function (results) {
-                        _this.tweets = results;
-                    });
+                    this._tweetService.putTweets(id)
+                        .subscribe(function (data) { return _this.tweets = data; }, function (err) { return _this.logError(err); }, function () { return console.log('deleteTweet works'); });
+                };
+                HistoryComponent.prototype.logError = function (err) {
+                    this.error = err._body.msg;
+                    console.error(err);
                 };
                 HistoryComponent = __decorate([
                     core_1.Component({

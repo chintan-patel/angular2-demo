@@ -21,6 +21,7 @@ twitterHandle;
     colors = ['#feb155', 'red', 'blue', 'green'];
     history: any = [];
     chart: any;
+    error: string;
     tableView: boolean = false;
     options: any = {
         element: 'chart',
@@ -64,8 +65,8 @@ twitterHandle;
             this.options.data = this.analysis;
             this.chart = Morris.Line(this.options);
         }
-
     }
+
     createChartValues(data) {
         var values = [];
         for (var i = 0; i < data.length; i++) {
@@ -77,11 +78,16 @@ twitterHandle;
         };
         return values;
     }
-    deleteTweet (tweet) {
-        tweet.delete = true;
-        this._tweetService.putTweets(tweet)
-            .subscribe(results => {
-                this.tweets = results;
-            });
+    deleteTweet (id) {
+        this._tweetService.putTweets(id)
+            .subscribe(
+                data => this.tweets = data,
+                err => this.logError(err),
+                () => console.log('deleteTweet works')
+            );
+    }
+    logError(err) {
+        this.error = err._body.msg;
+        console.error(err);
     }
 }

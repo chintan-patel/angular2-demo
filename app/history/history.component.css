@@ -5,7 +5,8 @@ ul.history {
 .history li{
     padding: 5px 10px;
     margin: 10px;
-    background: lightgoldenrodyellow;
+    font-size: 1.5em;
+    background: #eff;
 }
 .history li:hover{
     background: lightblue;
@@ -13,8 +14,10 @@ ul.history {
 .history li .info {
     float: right;
     font-size: .8em;
+    padding: 5px 10px;
 }
 .history li .delete-button {
     float: right;
-    font-size: 0.9em;
+    font-size: 0.5em;
+    padding: 10px 5px;
 }

@@ -20,7 +20,8 @@ export class SearchComponent {
     ykeys = ['a'];
     labels = ['words'];
     data : Array<any> = [];
-    private options: Object = {
+    Morris : any = Morris;
+    private options: any = {
         element: 'chart',
         ymax: 'auto',
         ymin: 'auto',
@@ -47,7 +48,7 @@ export class SearchComponent {
             this.chart.setData(this.analysis);
         } else {
             this.options.data = this.analysis;
-            this.chart = Morris.Line(this.options);
+            this.chart = this.Morris.Line(this.options);
         }
 
     }

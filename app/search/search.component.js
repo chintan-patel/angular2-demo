@@ -35,6 +35,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                     this.ykeys = ['a'];
                     this.labels = ['words'];
                     this.data = [];
+                    this.Morris = Morris;
                     this.options = {
                         element: 'chart',
                         ymax: 'auto',
@@ -61,7 +62,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http'], function
                     }
                     else {
                         this.options.data = this.analysis;
-                        this.chart = Morris.Line(this.options);
+                        this.chart = this.Morris.Line(this.options);
                     }
                 };
                 SearchComponent.prototype.createChartValues = function (data) {
