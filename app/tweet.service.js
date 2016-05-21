@@ -39,10 +39,10 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                     });
                 };
                 TweetService.prototype.putTweets = function (tweet_id) {
-                    var headers = new http_1.Headers();
-                    console.log(tweet_id);
-                    //headers.append('Content-Type', 'application/x-www-form-urlencoded');
-                    return this._http.put('/api/words/' + tweet_id, '')
+                    var body = JSON.stringify({ id: tweet_id });
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    return this._http.put('/api/words/' + tweet_id, body, options)
                         .map(function (response) {
                         return response.json().analysis;
                     });

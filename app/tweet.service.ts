@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {Http, Headers} from 'angular2/http';
+import {Http, RequestOptions, Headers} from 'angular2/http';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -21,10 +21,11 @@ export class TweetService {
             });
     }
     putTweets(tweet_id: any) {
-        var headers = new Headers();
-        console.log(tweet_id);
-        //headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this._http.put('/api/words/' + tweet_id, '')
+        var body = JSON.stringify({id : tweet_id});
+        var headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.put('/api/words/' + tweet_id, body, options)
             .map(response => {
                 return response.json().analysis;
             });

@@ -18,15 +18,13 @@ router.get('/*', four0four.notFoundMiddleware);
 module.exports = router;
 //////////////
 function putWords(req, res) {
-	var record_id = req.params.record_id;
-	words.findById(record_id, function (err, data) {
+	var record_id = req.body.id;
+	words.findOne({_id: record_id}, function (err, data) {
 		if (err) {
 			res.status(400).send(err);
 		}
-		console.log(JSON.stringify(data));
 		if (data) {
-			data.delete = true;
-			data.update(function (err, data) {
+			data.update({delete: true}, function (err, response) {
 				if (err) {
 					res.status(400).send(err);
 				}

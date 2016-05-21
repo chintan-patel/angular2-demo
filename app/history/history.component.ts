@@ -12,7 +12,7 @@ import {NgIf} from 'angular2/common';
 })
 
 export class HistoryComponent {
-twitterHandle;
+    twitterHandle;
     tweets: Array<any>;
     analysis: any;
     xkey = 'y';
@@ -78,13 +78,17 @@ twitterHandle;
         };
         return values;
     }
-    deleteTweet (id) {
+    deleteTweet (id: string, index) {
         this._tweetService.putTweets(id)
             .subscribe(
-                data => this.tweets = data,
+                response => this.deleteId(index),
                 err => this.logError(err),
-                () => console.log('deleteTweet works')
+                () => {}
+
             );
+    }
+    deleteId(index) {
+        this.history.splice(index,1);
     }
     logError(err) {
         this.error = err._body.msg;
