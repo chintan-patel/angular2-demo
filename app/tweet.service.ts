@@ -6,7 +6,6 @@ import 'rxjs/Rx';
 export class TweetService {
 
     constructor(private _http: Http) {
-
     }
     getSentiments(hash: string) {
         return this._http.post('/api/words/' + hash, '')
