@@ -1,0 +1,23 @@
+ul.history {
+    list-style: none;
+    padding: 0;
+}
+.history li{
+    padding: 5px 10px;
+    margin: 10px;
+    font-size: 1.5em;
+    background: #eff;
+}
+.history li:hover{
+    background: lightblue;
+}
+.history li .info {
+    float: right;
+    font-size: .8em;
+    padding: 5px 10px;
+}
+.history li .delete-button {
+    float: right;
+    font-size: 0.5em;
+    padding: 10px 5px;
+}

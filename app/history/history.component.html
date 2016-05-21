@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div *ngIf="loading" class="overlay-loader">
+        <div class="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="row" *ngIf="error">
+        <div class="col-lg-12 col-md-12">
+            <div>{{ error }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div id="chart"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table history">
+                <thead>
+                    <th>Twitter Hashtag</th>
+                    <th>Created on</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="#eachTweet of history; #i = index" *ngForTrackBy="created_on">
+                    <td><a (click)="getTweet(eachTweet._id)">{{eachTweet.searchHash}}</a></td>
+                    <td><div class="info" *ngIf="eachTweet.created_on">{{ getDate(eachTweet.created_on) | date:'medium' }}</div>
+                    <a class="delete-button" (click)="deleteTweet(eachTweet._id, i)"><i class="glyphicon glyphicon-remove"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" style="height:0">
+        <div class="col-md-12">
+            <button class="btn btn-primary" (click)="toggleTableView()">Toggle Table</button>
+            <table [style.visibility]="(tableView)? 'visible': 'hidden'" class="table table-stripped">
+                <thead>
+                    <th>
+                        Score
+                    </th>
+                    <th>
+                        Positive words
+                    </th>
+                    <th>
+                        Negative words
+                    </th>
+                </thead>
+                <tr *ngFor="#tweet1 of tweets">
+                    <td>{{tweet1.score}}</td>
+                    <td>{{tweet1.positive}}</td>
+                    <td>{{tweet1.negative}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

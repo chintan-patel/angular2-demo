@@ -38,18 +38,9 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                         return response.json().analysis;
                     });
                 };
-                TweetService.prototype.putTweets = function (tweet_id) {
-                    var body = JSON.stringify({ id: tweet_id });
-                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-                    var options = new http_1.RequestOptions({ headers: headers });
-                    return this._http.put('/api/words/' + tweet_id, body, options)
-                        .map(function (response) {
-                        return response.json().analysis;
-                    });
-                };
                 TweetService.prototype.getHistory = function () {
                     return this._http.get('/api/words/history')
-                        .map(function (response) { return response.json(); });
+                        .map(function (respones) { return respones.json(); });
                 };
                 TweetService = __decorate([
                     core_1.Injectable(), 
@@ -61,4 +52,4 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
         }
     }
 });
-//# sourceMappingURL=tweet.service.js.map
+//# sourceMappingURL=chart.service.js.map
