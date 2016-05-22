@@ -85,7 +85,11 @@ function postWords(req, res) {
 };
 
 function getWordHistory(req, res) {
-	words.find({delete: false}, function (err, data) {
+
+	words
+	.find({delete: false})
+	.sort('-created_on')
+	.exec(function (err, data) {
 		if (err) {
 			res.status(400).send(err);
 		}
