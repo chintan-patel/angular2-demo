@@ -22,7 +22,7 @@ export class TweetService {
     }
     getHistory() {
         return this._http.get('/api/words/history')
-            .map(respones => respones.json());
+            .map(response => response.json());
     }
 
 }

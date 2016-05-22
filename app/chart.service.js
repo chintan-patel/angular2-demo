@@ -40,7 +40,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                 };
                 TweetService.prototype.getHistory = function () {
                     return this._http.get('/api/words/history')
-                        .map(function (respones) { return respones.json(); });
+                        .map(function (response) { return response.json(); });
                 };
                 TweetService = __decorate([
                     core_1.Injectable(), 

@@ -5,6 +5,7 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {HistoryComponent} from '../history/history.component';
 import {SearchComponent} from '../search/search.component';
+import {HistoryDetailComponent} from '../history/history-details/index';
 
 @Component({
     selector: 'main-view',
@@ -17,6 +18,7 @@ import {SearchComponent} from '../search/search.component';
 @RouteConfig([
     {path: '/', name: 'Search', component: SearchComponent},
     {path: '/history', name: 'History', component: HistoryComponent},
+    {path: '/history/word/:word', name: 'Word', component: HistoryDetailComponent},
 ])
 export class HomeComponent {
     constructor(private router: Router) {

@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2/common'], function(exports_1, context_1) {
+System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2/router', 'angular2/common'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, tweet_service_1, http_1, common_1;
+    var core_1, tweet_service_1, http_1, router_1, common_1;
     var HistoryComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (common_1_1) {
                 common_1 = common_1_1;
@@ -61,37 +64,6 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
                 HistoryComponent.prototype.getDate = function (date) {
                     return new Date(date);
                 };
-                HistoryComponent.prototype.getTweet = function (_id) {
-                    var _this = this;
-                    this._tweetService.getTweets(_id)
-                        .subscribe(function (results) {
-                        _this.analysis = _this.createChartValues(results);
-                        _this.tweets = results;
-                        _this.createGraph();
-                        _this.twitterHandle = results.searchHash;
-                    });
-                };
-                HistoryComponent.prototype.createGraph = function () {
-                    if (this.chart) {
-                        this.chart.setData(this.analysis);
-                    }
-                    else {
-                        this.options.data = this.analysis;
-                        this.chart = Morris.Line(this.options);
-                    }
-                };
-                HistoryComponent.prototype.createChartValues = function (data) {
-                    var values = [];
-                    for (var i = 0; i < data.length; i++) {
-                        var tmp = {
-                            y: i + 1,
-                            a: data[i].score
-                        };
-                        values.push(tmp);
-                    }
-                    ;
-                    return values;
-                };
                 HistoryComponent.prototype.deleteTweet = function (id, index) {
                     var _this = this;
                     this._tweetService.putTweets(id)
@@ -106,11 +78,11 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
                 };
                 HistoryComponent = __decorate([
                     core_1.Component({
-                        selector: 'history-detail',
+                        selector: 'history',
                         templateUrl: 'app/history/history.component.html',
                         styleUrls: ['app/history/history.component.css'],
                         providers: [tweet_service_1.TweetService, http_1.HTTP_PROVIDERS],
-                        directives: [common_1.NgIf]
+                        directives: [common_1.NgIf, router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [tweet_service_1.TweetService])
                 ], HistoryComponent);

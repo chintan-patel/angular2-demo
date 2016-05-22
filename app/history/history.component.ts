@@ -1,14 +1,15 @@
 import {Component} from 'angular2/core';
 import {TweetService} from '../tweet.service';
 import {HTTP_PROVIDERS} from 'angular2/http';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {NgIf} from 'angular2/common';
 
 @Component({
-    selector: 'history-detail',
+    selector: 'history',
     templateUrl: 'app/history/history.component.html',
     styleUrls: ['app/history/history.component.css'],
     providers: [TweetService, HTTP_PROVIDERS],
-    directives: [NgIf]
+    directives: [NgIf, ROUTER_DIRECTIVES]
 })
 
 export class HistoryComponent {
@@ -47,36 +48,6 @@ export class HistoryComponent {
     }
     getDate(date) {
         return new Date(date);
-    }
-
-    getTweet(_id: string) {
-        this._tweetService.getTweets(_id)
-            .subscribe(results => {
-                this.analysis = this.createChartValues(results);
-                this.tweets = results;
-                this.createGraph();
-                this.twitterHandle = results.searchHash;
-            });
-    }
-    createGraph() {
-        if (this.chart) {
-            this.chart.setData(this.analysis);
-        } else {
-            this.options.data = this.analysis;
-            this.chart = Morris.Line(this.options);
-        }
-    }
-
-    createChartValues(data) {
-        var values = [];
-        for (var i = 0; i < data.length; i++) {
-            var tmp = {
-                y: i + 1,
-                a: data[i].score
-            };
-            values.push(tmp);
-        };
-        return values;
     }
     deleteTweet (id: string, index) {
         this._tweetService.putTweets(id)

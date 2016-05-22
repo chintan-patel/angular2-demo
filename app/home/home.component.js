@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2/router', '../history/history.component', '../search/search.component'], function(exports_1, context_1) {
+System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2/router', '../history/history.component', '../search/search.component', '../history/history-details/index'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, tweet_service_1, http_1, router_1, history_component_1, search_component_1;
+    var core_1, tweet_service_1, http_1, router_1, history_component_1, search_component_1, index_1;
     var HomeComponent;
     return {
         setters:[
@@ -31,6 +31,9 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
             },
             function (search_component_1_1) {
                 search_component_1 = search_component_1_1;
+            },
+            function (index_1_1) {
+                index_1 = index_1_1;
             }],
         execute: function() {
             HomeComponent = (function () {
@@ -51,6 +54,7 @@ System.register(['angular2/core', '../tweet.service', 'angular2/http', 'angular2
                     router_1.RouteConfig([
                         { path: '/', name: 'Search', component: search_component_1.SearchComponent },
                         { path: '/history', name: 'History', component: history_component_1.HistoryComponent },
+                        { path: '/history/word/:word', name: 'Word', component: index_1.HistoryDetailComponent },
                     ]), 
                     __metadata('design:paramtypes', [router_1.Router])
                 ], HomeComponent);
