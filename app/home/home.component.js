@@ -10,12 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var tweet_service_1 = require('../tweet.service');
-var router_1 = require('@angular/router');
 var HomeComponent = (function () {
-    function HomeComponent(router) {
-        this.router = router;
-        console.log('HIHIHHI');
-        console.log(router.url);
+    function HomeComponent() {
     }
     HomeComponent = __decorate([
         core_1.Component({
@@ -24,7 +20,7 @@ var HomeComponent = (function () {
             styleUrls: ['app/home/home.component.css'],
             providers: [tweet_service_1.TweetService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [])
     ], HomeComponent);
     return HomeComponent;
 }());
