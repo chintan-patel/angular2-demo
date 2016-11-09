@@ -1,15 +1,11 @@
-import {Component} from 'angular2/core';
-import {TweetService} from '../tweet.service';
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
-import {NgIf} from 'angular2/common';
-
+import { Component } from '@angular/core';
+import { TweetService } from '../tweet.service';
+import { Router } from '@angular/router';
 @Component({
     selector: 'history',
     templateUrl: 'app/history/history.component.html',
     styleUrls: ['app/history/history.component.css'],
-    providers: [TweetService, HTTP_PROVIDERS],
-    directives: [NgIf, ROUTER_DIRECTIVES]
+    providers: [TweetService]
 })
 
 export class HistoryComponent {
@@ -35,7 +31,7 @@ export class HistoryComponent {
         labels: this.labels
     }
     loading = false;
-    constructor(private _tweetService: TweetService) {
+    constructor(private _tweetService: TweetService, private router: Router) {
         this.loading = true;
         this._tweetService.getHistory()
             .subscribe(response => {
@@ -43,23 +39,27 @@ export class HistoryComponent {
                 this.history = response;
             });
     }
+    onSelectTweet(tweet: any) {
+        console.log(tweet);
+        this.router.navigate(['/history', tweet._id])
+    }
     toggleTableView() {
         this.tableView = !this.tableView;
     }
     getDate(date) {
         return new Date(date);
     }
-    deleteTweet (id: string, index) {
+    deleteTweet(id: string, index) {
         this._tweetService.putTweets(id)
             .subscribe(
-                response => this.deleteId(index),
-                err => this.logError(err),
-                () => {}
+            response => this.deleteId(index),
+            err => this.logError(err),
+            () => { }
 
             );
     }
     deleteId(index) {
-        this.history.splice(index,1);
+        this.history.splice(index, 1);
     }
     logError(err) {
         this.error = err._body.msg;

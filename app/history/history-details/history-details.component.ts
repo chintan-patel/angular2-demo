@@ -1,15 +1,15 @@
-import {Component} from 'angular2/core';
-import {TweetService} from '../../tweet.service';
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {NgIf} from 'angular2/common';
-import {RouteParams} from 'angular2/router';
+import { Component } from '@angular/core';
+import { TweetService } from '../../tweet.service';
+//import {HTTP_PROVIDERS} from '@angular/http';
+import { NgIf } from '@angular/common';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+declare var Morris: any;
 
 @Component({
     selector: 'history-detail',
     templateUrl: 'app/history/history-details/history-details.component.html',
     styleUrls: ['app/history/history-details/history-details.component.css'],
-    providers: [TweetService, HTTP_PROVIDERS],
-    directives: [NgIf]
+    providers: [TweetService],
 })
 
 export class HistoryDetailComponent {
@@ -35,11 +35,17 @@ export class HistoryDetailComponent {
         labels: this.labels
     }
     loading = false;
-    constructor(params: RouteParams, private _tweetService: TweetService) {
+
+
+    constructor(private _tweetService: TweetService, private route: ActivatedRoute,
+    private router: Router) {
         this.loading = true;
-        let word = params.get('word');
-        console.log(word);
-        this.getTweet(word);
+    }
+    ngOnInit() {
+        this.route.params.forEach((params: Params) => {
+            let word = params['word']; // (+) converts string 'id' to a number
+            this.getTweet(word);
+        });
     }
     toggleTableView() {
         this.tableView = !this.tableView;
@@ -79,17 +85,17 @@ export class HistoryDetailComponent {
         };
         return values;
     }
-    deleteTweet (id: string, index) {
+    deleteTweet(id: string, index) {
         this._tweetService.putTweets(id)
             .subscribe(
-                response => this.deleteId(index),
-                err => this.logError(err),
-                () => {}
+            response => this.deleteId(index),
+            err => this.logError(err),
+            () => { }
 
             );
     }
     deleteId(index) {
-        this.history.splice(index,1);
+        this.history.splice(index, 1);
     }
     logError(err) {
         this.error = err._body.msg;

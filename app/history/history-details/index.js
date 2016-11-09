@@ -1,15 +1,4 @@
-System.register(['./history-details.component'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
-    return {
-        setters:[
-            function (history_details_component_1_1) {
-                exports_1({
-                    "HistoryDetailComponent": history_details_component_1_1["HistoryDetailComponent"]
-                });
-            }],
-        execute: function() {
-        }
-    }
-});
+"use strict";
+var history_details_component_1 = require('./history-details.component');
+exports.HistoryDetailComponent = history_details_component_1.HistoryDetailComponent;
 //# sourceMappingURL=index.js.map

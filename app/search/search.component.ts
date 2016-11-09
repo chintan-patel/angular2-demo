@@ -1,13 +1,13 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {TweetService} from '../tweet.service';
-import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
-import {HTTP_PROVIDERS} from 'angular2/http';
+//import {BaseChartComponent} from 'ng2-charts/ng2-charts';
+declare var Morris: any;
 
 @Component({
     selector: 'search',
     templateUrl: 'app/search/search.component.html',
     styleUrls: ['app/search/search.component.css'],
-    providers: [TweetService, HTTP_PROVIDERS]
+    providers: [TweetService]
 })
 
 export class SearchComponent {
