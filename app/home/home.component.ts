@@ -14,9 +14,4 @@ import {Observable} from 'rxjs/Observable';
     providers: [TweetService]
 })
 
-export class HomeComponent {
-    constructor(private router: Router) {
-        console.log('HIHIHHI');
-        console.log(router.url);
-    }
-}
+export class HomeComponent {    }
