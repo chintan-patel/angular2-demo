@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var tweet_service_1 = require('../shared/tweet.service');
+var core_1 = require("@angular/core");
+var tweet_service_1 = require("../shared/tweet.service");
 var SearchComponent = (function () {
     function SearchComponent(_tweetService) {
         this._tweetService = _tweetService;
@@ -63,16 +63,16 @@ var SearchComponent = (function () {
         ;
         return values;
     };
-    SearchComponent = __decorate([
-        core_1.Component({
-            selector: 'search',
-            templateUrl: 'app/search/search.component.html',
-            styleUrls: ['app/search/search.component.css'],
-            providers: [tweet_service_1.TweetService]
-        }), 
-        __metadata('design:paramtypes', [tweet_service_1.TweetService])
-    ], SearchComponent);
     return SearchComponent;
 }());
+SearchComponent = __decorate([
+    core_1.Component({
+        selector: 'search',
+        templateUrl: 'app/search/search.component.html',
+        styleUrls: ['app/search/search.component.css'],
+        providers: [tweet_service_1.TweetService]
+    }),
+    __metadata("design:paramtypes", [tweet_service_1.TweetService])
+], SearchComponent);
 exports.SearchComponent = SearchComponent;
 //# sourceMappingURL=search.component.js.map

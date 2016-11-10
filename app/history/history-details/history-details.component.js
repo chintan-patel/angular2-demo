@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var tweet_service_1 = require('../../shared/tweet.service');
-var router_1 = require('@angular/router');
+var core_1 = require("@angular/core");
+var tweet_service_1 = require("../../shared/tweet.service");
+var router_1 = require("@angular/router");
 var HistoryDetailComponent = (function () {
     function HistoryDetailComponent(_tweetService, route, router) {
         this._tweetService = _tweetService;
@@ -93,16 +93,17 @@ var HistoryDetailComponent = (function () {
         this.error = err._body.msg;
         console.error(err);
     };
-    HistoryDetailComponent = __decorate([
-        core_1.Component({
-            selector: 'history-detail',
-            templateUrl: 'app/history/history-details/history-details.component.html',
-            styleUrls: ['app/history/history-details/history-details.component.css'],
-            providers: [tweet_service_1.TweetService],
-        }), 
-        __metadata('design:paramtypes', [tweet_service_1.TweetService, router_1.ActivatedRoute, router_1.Router])
-    ], HistoryDetailComponent);
     return HistoryDetailComponent;
 }());
+HistoryDetailComponent = __decorate([
+    core_1.Component({
+        selector: 'history-detail',
+        templateUrl: 'app/history/history-details/history-details.component.html',
+        styleUrls: ['app/history/history-details/history-details.component.css'],
+        providers: [tweet_service_1.TweetService],
+    }),
+    __metadata("design:paramtypes", [tweet_service_1.TweetService, router_1.ActivatedRoute,
+        router_1.Router])
+], HistoryDetailComponent);
 exports.HistoryDetailComponent = HistoryDetailComponent;
 //# sourceMappingURL=history-details.component.js.map
