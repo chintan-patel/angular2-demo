@@ -14,8 +14,7 @@
     "start-server": "concurrently \"npm run tsc:w\" \"node server/server.js\" ",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "lite": "lite-server",
-    "typings": "typings"
+    "lite": "lite-server"
   },
   "dependencies": {
     "@angular/common": ">2.0.0",
@@ -41,18 +40,18 @@
     "serve-favicon": "^2.0.1",
     "systemjs": "0.19.27",
     "twitter": "^1.2.5",
-    "typings": "^2.0.0",
     "zone.js": "^0.6.23"
   },
   "devDependencies": {
+    "@types/angular": "^1.5.19",
+    "@types/core-js": "^0.9.34",
     "concurrently": "^2.0.0",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
-    "gulp-minify": "0.0.11",
+    "gulp-minify": ">0.0.0",
     "lite-server": "^2.1.0",
     "typescript": ">2.0.0",
-    "typings": "^0.6.8",
     "vinyl-paths": "^2.1.0"
   }
 }
