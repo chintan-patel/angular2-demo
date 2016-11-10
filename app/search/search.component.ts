@@ -10,7 +10,7 @@ declare let Morris: any;
 })
 
 export class SearchComponent {
-    chart;
+    chart: any;
     history: Array<any> = [];
     twitterHandle: string = '';
     analysis: Object = {};
@@ -51,8 +51,8 @@ export class SearchComponent {
         }
 
     }
-    createChartValues(data) {
-        let values = [];
+    createChartValues(data: Array<any>) {
+        let values: Array<any> = [];
         for (let i = 0; i < data.length; i++) {
             let tmp = {
                 y: i + 1,

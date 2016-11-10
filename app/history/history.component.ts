@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 
 export class HistoryComponent {
-    twitterHandle;
+    twitterHandle: any;
     tweets: Array<any>;
     analysis: any;
     xkey = 'y';
@@ -45,20 +45,20 @@ export class HistoryComponent {
     toggleTableView() {
         this.tableView = !this.tableView;
     }
-    getDate(date) {
+    getDate(date: string) {
         return new Date(date);
     }
-    deleteTweet(id: string, index) {
+    deleteTweet(id: string, index: number) {
         this._tweetService.putTweets(id)
             .subscribe(
             response => this.deleteId(index),
             err => this.logError(err)
             );
     }
-    deleteId(index) {
+    deleteId(index: number) {
         this.history.splice(index, 1);
     }
-    logError(err) {
+    logError(err: any) {
         this.error = err._body.msg;
         console.error(err);
     }

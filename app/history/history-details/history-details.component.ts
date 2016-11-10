@@ -11,7 +11,7 @@ declare let Morris: any;
 })
 
 export class HistoryDetailComponent {
-    twitterHandle;
+    twitterHandle: any;
     tweets: Array<any>;
     analysis: any;
     xkey = 'y';
@@ -47,7 +47,7 @@ export class HistoryDetailComponent {
     toggleTableView() {
         this.tableView = !this.tableView;
     }
-    getDate(date) {
+    getDate(date: string) {
         return new Date(date);
     }
 
@@ -71,8 +71,8 @@ export class HistoryDetailComponent {
         }
     }
 
-    createChartValues(data) {
-        let values = [];
+    createChartValues(data: Array<any>) {
+        let values: Array<any> = [];
         for (let i = 0; i < data.length; i++) {
             let tmp = {
                 y: i + 1,
@@ -82,17 +82,17 @@ export class HistoryDetailComponent {
         };
         return values;
     }
-    deleteTweet(id: string, index) {
+    deleteTweet(id: string, index: number) {
         this._tweetService.putTweets(id)
             .subscribe(
             response => this.deleteId(index),
             err => this.logError(err)
         );
     }
-    deleteId(index) {
+    deleteId(index: number) {
         this.history.splice(index, 1);
     }
-    logError(err) {
+    logError(err: any) {
         this.error = err._body.msg;
         console.error(err);
     }
