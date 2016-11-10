@@ -29,8 +29,8 @@ var AppModule = (function () {
                 forms_1.FormsModule,
                 router_1.RouterModule.forRoot([
                     {
-                        path: 'home',
-                        component: home_component_1.HomeComponent
+                        path: '',
+                        component: search_component_1.SearchComponent
                     },
                     {
                         path: 'search',

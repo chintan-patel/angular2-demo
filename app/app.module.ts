@@ -17,8 +17,8 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     RouterModule.forRoot([
       {
-        path: 'home',
-        component: HomeComponent
+        path: '',
+        component: SearchComponent
       },
       {
         path: 'search',
