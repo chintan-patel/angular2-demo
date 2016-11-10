@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TweetService} from '../tweet.service';
+import {TweetService} from '../shared/tweet.service';
 import {} from 'ng2-charts/ng2-charts';
 import { Router } from '@angular/router';
 import {HistoryComponent} from '../history/history.component';

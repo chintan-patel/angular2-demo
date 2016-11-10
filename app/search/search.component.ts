@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TweetService} from '../tweet.service';
+import {TweetService} from '../shared/tweet.service';
 declare var Morris: any;
 
 @Component({

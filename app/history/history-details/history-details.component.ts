@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TweetService } from '../../tweet.service';
+import { TweetService } from '../../shared/tweet.service';
 import { NgIf } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 declare var Morris: any;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TweetService } from '../tweet.service';
+import { TweetService } from '../shared/tweet.service';
 import { Router } from '@angular/router';
 @Component({
     selector: 'history',

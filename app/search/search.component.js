@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var tweet_service_1 = require('../tweet.service');
+var tweet_service_1 = require('../shared/tweet.service');
 var SearchComponent = (function () {
     function SearchComponent(_tweetService) {
         this._tweetService = _tweetService;
