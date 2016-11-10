@@ -41,7 +41,6 @@ var HistoryComponent = (function () {
         });
     }
     HistoryComponent.prototype.onSelectTweet = function (tweet) {
-        console.log(tweet);
         this.router.navigate(['/history', tweet._id]);
     };
     HistoryComponent.prototype.toggleTableView = function () {
@@ -53,7 +52,7 @@ var HistoryComponent = (function () {
     HistoryComponent.prototype.deleteTweet = function (id, index) {
         var _this = this;
         this._tweetService.putTweets(id)
-            .subscribe(function (response) { return _this.deleteId(index); }, function (err) { return _this.logError(err); }, function () { });
+            .subscribe(function (response) { return _this.deleteId(index); }, function (err) { return _this.logError(err); });
     };
     HistoryComponent.prototype.deleteId = function (index) {
         this.history.splice(index, 1);

@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var tweet_service_1 = require('../shared/tweet.service');
 var HomeComponent = (function () {
     function HomeComponent() {
     }
@@ -18,7 +17,7 @@ var HomeComponent = (function () {
             selector: 'main-view',
             templateUrl: 'app/home/home.component.html',
             styleUrls: ['app/home/home.component.css'],
-            providers: [tweet_service_1.TweetService]
+            providers: []
         }), 
         __metadata('design:paramtypes', [])
     ], HomeComponent);

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { TweetService } from '../../shared/tweet.service';
-import { NgIf } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-declare var Morris: any;
+declare let Morris: any;
 
 @Component({
     selector: 'history-detail',
@@ -32,9 +31,8 @@ export class HistoryDetailComponent {
         xkey: this.xkey,
         ykeys: this.ykeys,
         labels: this.labels
-    }
+    };
     loading = false;
-
 
     constructor(private _tweetService: TweetService, private route: ActivatedRoute,
     private router: Router) {
@@ -74,9 +72,9 @@ export class HistoryDetailComponent {
     }
 
     createChartValues(data) {
-        var values = [];
-        for (var i = 0; i < data.length; i++) {
-            var tmp = {
+        let values = [];
+        for (let i = 0; i < data.length; i++) {
+            let tmp = {
                 y: i + 1,
                 a: data[i].score
             };
@@ -88,10 +86,8 @@ export class HistoryDetailComponent {
         this._tweetService.putTweets(id)
             .subscribe(
             response => this.deleteId(index),
-            err => this.logError(err),
-            () => { }
-
-            );
+            err => this.logError(err)
+        );
     }
     deleteId(index) {
         this.history.splice(index, 1);

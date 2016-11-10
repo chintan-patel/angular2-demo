@@ -29,7 +29,7 @@ export class HistoryComponent {
         xkey: this.xkey,
         ykeys: this.ykeys,
         labels: this.labels
-    }
+    };
     loading = false;
     constructor(private _tweetService: TweetService, private router: Router) {
         this.loading = true;
@@ -40,8 +40,7 @@ export class HistoryComponent {
             });
     }
     onSelectTweet(tweet: any) {
-        console.log(tweet);
-        this.router.navigate(['/history', tweet._id])
+        this.router.navigate(['/history', tweet._id]);
     }
     toggleTableView() {
         this.tableView = !this.tableView;
@@ -53,9 +52,7 @@ export class HistoryComponent {
         this._tweetService.putTweets(id)
             .subscribe(
             response => this.deleteId(index),
-            err => this.logError(err),
-            () => { }
-
+            err => this.logError(err)
             );
     }
     deleteId(index) {

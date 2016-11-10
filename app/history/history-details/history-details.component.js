@@ -84,7 +84,7 @@ var HistoryDetailComponent = (function () {
     HistoryDetailComponent.prototype.deleteTweet = function (id, index) {
         var _this = this;
         this._tweetService.putTweets(id)
-            .subscribe(function (response) { return _this.deleteId(index); }, function (err) { return _this.logError(err); }, function () { });
+            .subscribe(function (response) { return _this.deleteId(index); }, function (err) { return _this.logError(err); });
     };
     HistoryDetailComponent.prototype.deleteId = function (index) {
         this.history.splice(index, 1);

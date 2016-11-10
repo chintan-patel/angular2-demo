@@ -7,15 +7,34 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class TweetService {
 
-    constructor(private _http: Http) {
-    }
+    constructor(private _http: Http) { }
+
     getSentiments(hash: string) {
         return this._http.post('/api/words/' + hash, '')
             .map(this.mapResponse)
-            .catch(this.handleError)
-
-
+            .catch(this.handleError);
     }
+    getTweets(_id: string) {
+        return this._http.get('/api/record/' + _id)
+            .map(response => {
+                return response.json().analysis;
+            });
+    }
+    putTweets(tweet_id: any) {
+        let body = JSON.stringify({ id: tweet_id });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this._http.put('/api/words/' + tweet_id, body, options)
+            .map(response => {
+                return response.json().analysis;
+            });
+    }
+    getHistory() {
+        return this._http.get('/api/words/history')
+            .map(response => response.json());
+    }
+
     private mapResponse(res: Response) {
         return res.json().analysis.analysis;
     }
@@ -33,26 +52,4 @@ export class TweetService {
         console.error(errMsg);
         return Observable.throw(errMsg);
     }
-
-    getTweets(_id: string) {
-        return this._http.get('/api/record/' + _id)
-            .map(response => {
-                return response.json().analysis;
-            });
-    }
-    putTweets(tweet_id: any) {
-        var body = JSON.stringify({ id: tweet_id });
-        var headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this._http.put('/api/words/' + tweet_id, body, options)
-            .map(response => {
-                return response.json().analysis;
-            });
-    }
-    getHistory() {
-        return this._http.get('/api/words/history')
-            .map(response => response.json());
-    }
-
 }

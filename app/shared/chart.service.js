@@ -38,4 +38,5 @@ var TweetService = (function () {
     return TweetService;
 }());
 exports.TweetService = TweetService;
+;
 //# sourceMappingURL=chart.service.js.map

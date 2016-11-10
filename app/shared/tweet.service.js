@@ -22,23 +22,6 @@ var TweetService = (function () {
             .map(this.mapResponse)
             .catch(this.handleError);
     };
-    TweetService.prototype.mapResponse = function (res) {
-        return res.json().analysis.analysis;
-    };
-    TweetService.prototype.handleError = function (error) {
-        // In a real world app, we might use a remote logging infrastructure
-        var errMsg;
-        if (error instanceof http_1.Response) {
-            var body = error.json() || '';
-            var err = body.error || JSON.stringify(body);
-            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
-        }
-        else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        return Observable_1.Observable.throw(errMsg);
-    };
     TweetService.prototype.getTweets = function (_id) {
         return this._http.get('/api/record/' + _id)
             .map(function (response) {
@@ -57,6 +40,23 @@ var TweetService = (function () {
     TweetService.prototype.getHistory = function () {
         return this._http.get('/api/words/history')
             .map(function (response) { return response.json(); });
+    };
+    TweetService.prototype.mapResponse = function (res) {
+        return res.json().analysis.analysis;
+    };
+    TweetService.prototype.handleError = function (error) {
+        // In a real world app, we might use a remote logging infrastructure
+        var errMsg;
+        if (error instanceof http_1.Response) {
+            var body = error.json() || '';
+            var err = body.error || JSON.stringify(body);
+            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
+        }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Observable_1.Observable.throw(errMsg);
     };
     TweetService = __decorate([
         core_1.Injectable(), 

@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {TweetService} from '../shared/tweet.service';
-declare var Morris: any;
+import { Component } from '@angular/core';
+import { TweetService } from '../shared/tweet.service';
+declare let Morris: any;
 
 @Component({
     selector: 'search',
@@ -11,15 +11,15 @@ declare var Morris: any;
 
 export class SearchComponent {
     chart;
-    history : Array<any> = [];
-    twitterHandle : string = '';
-    analysis : Object = {};
-    tweets : Array<any> = [];
+    history: Array<any> = [];
+    twitterHandle: string = '';
+    analysis: Object = {};
+    tweets: Array<any> = [];
     xkey = 'y';
     ykeys = ['a'];
     labels = ['words'];
-    data : Array<any> = [];
-    Morris : any = Morris;
+    data: Array<any> = [];
+    Morris: any = Morris;
     private options: any = {
         element: 'chart',
         ymax: 'auto',
@@ -52,9 +52,9 @@ export class SearchComponent {
 
     }
     createChartValues(data) {
-        var values = [];
-        for (var i = 0; i < data.length; i++) {
-            var tmp = {
+        let values = [];
+        for (let i = 0; i < data.length; i++) {
+            let tmp = {
                 y: i + 1,
                 a: data[i].score
             };
