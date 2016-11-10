@@ -3,6 +3,9 @@
   "description": "The demo for Angular 2 with Docker Container",
   "version": "0.0.1",
   "readme": "README.md",
+  "engine": {
+    "node": "4.4.7"
+  },
   "repository": {
     "github": ""
   },
