@@ -10,7 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var Rx_1 = require('rxjs/Rx');
+var Observable_1 = require('rxjs/Observable');
+require('rxjs/add/operator/map');
 var TweetService = (function () {
     function TweetService(_http) {
         this._http = _http;
@@ -35,7 +36,7 @@ var TweetService = (function () {
             errMsg = error.message ? error.message : error.toString();
         }
         console.error(errMsg);
-        return Rx_1.Observable.throw(errMsg);
+        return Observable_1.Observable.throw(errMsg);
     };
     TweetService.prototype.getTweets = function (_id) {
         return this._http.get('/api/record/' + _id)

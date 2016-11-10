@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import {HistoryComponent} from '../history/history.component';
 import {SearchComponent} from '../search/search.component';
 import {HistoryDetailComponent} from '../history/history-details/index';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'main-view',

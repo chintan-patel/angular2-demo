@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {TweetService} from '../tweet.service';
-//import {BaseChartComponent} from 'ng2-charts/ng2-charts';
 declare var Morris: any;
 
 @Component({

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {} from 'rxjs';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TweetService {
