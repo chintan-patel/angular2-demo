@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
-import { TweetService } from '../shared/tweet.service';
-import { Router } from '@angular/router';
-let HistoryComponent = class HistoryComponent {
-    constructor(_tweetService, router) {
+var core_1 = require("@angular/core");
+var tweet_service_1 = require("../shared/tweet.service");
+var router_1 = require("@angular/router");
+var HistoryComponent = (function () {
+    function HistoryComponent(_tweetService, router) {
+        var _this = this;
         this._tweetService = _tweetService;
         this.router = router;
         this.xkey = 'y';
@@ -33,40 +35,42 @@ let HistoryComponent = class HistoryComponent {
         this.loading = false;
         this.loading = true;
         this._tweetService.getHistory()
-            .subscribe(response => {
-            this.loading = false;
-            this.history = response;
+            .subscribe(function (response) {
+            _this.loading = false;
+            _this.history = response;
         });
     }
-    onSelectTweet(tweet) {
+    HistoryComponent.prototype.onSelectTweet = function (tweet) {
         this.router.navigate(['/history', tweet._id]);
-    }
-    toggleTableView() {
+    };
+    HistoryComponent.prototype.toggleTableView = function () {
         this.tableView = !this.tableView;
-    }
-    getDate(date) {
+    };
+    HistoryComponent.prototype.getDate = function (date) {
         return new Date(date);
-    }
-    deleteTweet(id, index) {
+    };
+    HistoryComponent.prototype.deleteTweet = function (id, index) {
+        var _this = this;
         this._tweetService.putTweets(id)
-            .subscribe(response => this.deleteId(index), err => this.logError(err));
-    }
-    deleteId(index) {
+            .subscribe(function (response) { return _this.deleteId(index); }, function (err) { return _this.logError(err); });
+    };
+    HistoryComponent.prototype.deleteId = function (index) {
         this.history.splice(index, 1);
-    }
-    logError(err) {
+    };
+    HistoryComponent.prototype.logError = function (err) {
         this.error = err._body.msg;
         console.error(err);
-    }
-};
+    };
+    return HistoryComponent;
+}());
 HistoryComponent = __decorate([
-    Component({
+    core_1.Component({
         selector: 'history',
         templateUrl: 'app/history/history.component.html',
         styleUrls: ['app/history/history.component.css'],
-        providers: [TweetService]
+        providers: [tweet_service_1.TweetService]
     }),
-    __metadata("design:paramtypes", [TweetService, Router])
+    __metadata("design:paramtypes", [tweet_service_1.TweetService, router_1.Router])
 ], HistoryComponent);
-export { HistoryComponent };
+exports.HistoryComponent = HistoryComponent;
 //# sourceMappingURL=history.component.js.map

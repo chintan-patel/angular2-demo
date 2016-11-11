@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
-import { TweetService } from '../shared/tweet.service';
-let SearchComponent = class SearchComponent {
-    constructor(_tweetService) {
+var core_1 = require("@angular/core");
+var tweet_service_1 = require("../shared/tweet.service");
+var SearchComponent = (function () {
+    function SearchComponent(_tweetService) {
         this._tweetService = _tweetService;
         this.history = [];
         this.twitterHandle = '';
@@ -32,15 +33,16 @@ let SearchComponent = class SearchComponent {
             data: this.data
         };
     }
-    getSentiments() {
+    SearchComponent.prototype.getSentiments = function () {
+        var _this = this;
         this._tweetService.getSentiments(this.twitterHandle)
-            .subscribe(results => {
-            this.analysis = this.createChartValues(results);
-            this.tweets = results;
-            this.createGraph();
+            .subscribe(function (results) {
+            _this.analysis = _this.createChartValues(results);
+            _this.tweets = results;
+            _this.createGraph();
         });
-    }
-    createGraph() {
+    };
+    SearchComponent.prototype.createGraph = function () {
         if (this.chart) {
             this.chart.setData(this.analysis);
         }
@@ -48,11 +50,11 @@ let SearchComponent = class SearchComponent {
             this.options.data = this.analysis;
             this.chart = this.Morris.Line(this.options);
         }
-    }
-    createChartValues(data) {
-        let values = [];
-        for (let i = 0; i < data.length; i++) {
-            let tmp = {
+    };
+    SearchComponent.prototype.createChartValues = function (data) {
+        var values = [];
+        for (var i = 0; i < data.length; i++) {
+            var tmp = {
                 y: i + 1,
                 a: data[i].score
             };
@@ -60,16 +62,17 @@ let SearchComponent = class SearchComponent {
         }
         ;
         return values;
-    }
-};
+    };
+    return SearchComponent;
+}());
 SearchComponent = __decorate([
-    Component({
+    core_1.Component({
         selector: 'search',
         templateUrl: 'app/search/search.component.html',
         styleUrls: ['app/search/search.component.css'],
-        providers: [TweetService]
+        providers: [tweet_service_1.TweetService]
     }),
-    __metadata("design:paramtypes", [TweetService])
+    __metadata("design:paramtypes", [tweet_service_1.TweetService])
 ], SearchComponent);
-export { SearchComponent };
+exports.SearchComponent = SearchComponent;
 //# sourceMappingURL=search.component.js.map
