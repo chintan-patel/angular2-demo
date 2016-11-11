@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,11 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var tweet_service_1 = require("../../shared/tweet.service");
-var router_1 = require("@angular/router");
-var HistoryDetailComponent = (function () {
-    function HistoryDetailComponent(_tweetService, route, router) {
+import { Component } from '@angular/core';
+import { TweetService } from '../../shared/tweet.service';
+import { ActivatedRoute, Router } from '@angular/router';
+let HistoryDetailComponent = class HistoryDetailComponent {
+    constructor(_tweetService, route, router) {
         this._tweetService = _tweetService;
         this.route = route;
         this.router = router;
@@ -35,32 +34,30 @@ var HistoryDetailComponent = (function () {
         this.loading = false;
         this.loading = true;
     }
-    HistoryDetailComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.route.params.forEach(function (params) {
-            var word = params['word'];
-            _this.getTweet(word);
+    ngOnInit() {
+        this.route.params.forEach((params) => {
+            let word = params['word'];
+            this.getTweet(word);
         });
-    };
-    HistoryDetailComponent.prototype.toggleTableView = function () {
+    }
+    toggleTableView() {
         this.tableView = !this.tableView;
-    };
-    HistoryDetailComponent.prototype.getDate = function (date) {
+    }
+    getDate(date) {
         return new Date(date);
-    };
-    HistoryDetailComponent.prototype.getTweet = function (_id) {
-        var _this = this;
+    }
+    getTweet(_id) {
         this.loading = true;
         this._tweetService.getTweets(_id)
-            .subscribe(function (results) {
-            _this.loading = false;
-            _this.analysis = _this.createChartValues(results);
-            _this.tweets = results;
-            _this.createGraph();
-            _this.twitterHandle = results.searchHash;
+            .subscribe(results => {
+            this.loading = false;
+            this.analysis = this.createChartValues(results);
+            this.tweets = results;
+            this.createGraph();
+            this.twitterHandle = results.searchHash;
         });
-    };
-    HistoryDetailComponent.prototype.createGraph = function () {
+    }
+    createGraph() {
         if (this.chart) {
             this.chart.setData(this.analysis);
         }
@@ -68,11 +65,11 @@ var HistoryDetailComponent = (function () {
             this.options.data = this.analysis;
             this.chart = Morris.Line(this.options);
         }
-    };
-    HistoryDetailComponent.prototype.createChartValues = function (data) {
-        var values = [];
-        for (var i = 0; i < data.length; i++) {
-            var tmp = {
+    }
+    createChartValues(data) {
+        let values = [];
+        for (let i = 0; i < data.length; i++) {
+            let tmp = {
                 y: i + 1,
                 a: data[i].score
             };
@@ -80,30 +77,28 @@ var HistoryDetailComponent = (function () {
         }
         ;
         return values;
-    };
-    HistoryDetailComponent.prototype.deleteTweet = function (id, index) {
-        var _this = this;
+    }
+    deleteTweet(id, index) {
         this._tweetService.putTweets(id)
-            .subscribe(function (response) { return _this.deleteId(index); }, function (err) { return _this.logError(err); });
-    };
-    HistoryDetailComponent.prototype.deleteId = function (index) {
+            .subscribe(response => this.deleteId(index), err => this.logError(err));
+    }
+    deleteId(index) {
         this.history.splice(index, 1);
-    };
-    HistoryDetailComponent.prototype.logError = function (err) {
+    }
+    logError(err) {
         this.error = err._body.msg;
         console.error(err);
-    };
-    return HistoryDetailComponent;
-}());
+    }
+};
 HistoryDetailComponent = __decorate([
-    core_1.Component({
+    Component({
         selector: 'history-detail',
         templateUrl: 'app/history/history-details/history-details.component.html',
         styleUrls: ['app/history/history-details/history-details.component.css'],
-        providers: [tweet_service_1.TweetService],
+        providers: [TweetService],
     }),
-    __metadata("design:paramtypes", [tweet_service_1.TweetService, router_1.ActivatedRoute,
-        router_1.Router])
+    __metadata("design:paramtypes", [TweetService, ActivatedRoute,
+        Router])
 ], HistoryDetailComponent);
-exports.HistoryDetailComponent = HistoryDetailComponent;
+export { HistoryDetailComponent };
 //# sourceMappingURL=history-details.component.js.map

@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,60 +7,59 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-var Observable_1 = require("rxjs/Observable");
-require("rxjs/add/operator/map");
-require("rxjs/add/operator/catch");
-var TweetService = (function () {
-    function TweetService(_http) {
+import { Injectable } from '@angular/core';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+let TweetService = class TweetService {
+    constructor(_http) {
         this._http = _http;
     }
-    TweetService.prototype.getSentiments = function (hash) {
+    getSentiments(hash) {
         return this._http.post('/api/words/' + hash, '')
             .map(this.mapResponse)
             .catch(this.handleError);
-    };
-    TweetService.prototype.getTweets = function (_id) {
+    }
+    getTweets(_id) {
         return this._http.get('/api/record/' + _id)
-            .map(function (response) {
+            .map(response => {
             return response.json().analysis;
         });
-    };
-    TweetService.prototype.putTweets = function (tweet_id) {
-        var body = JSON.stringify({ id: tweet_id });
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
+    }
+    putTweets(tweet_id) {
+        let body = JSON.stringify({ id: tweet_id });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
         return this._http.put('/api/words/' + tweet_id, body, options)
-            .map(function (response) {
+            .map(response => {
             return response.json().analysis;
         });
-    };
-    TweetService.prototype.getHistory = function () {
+    }
+    getHistory() {
         return this._http.get('/api/words/history')
-            .map(function (response) { return response.json(); });
-    };
-    TweetService.prototype.mapResponse = function (res) {
+            .map(response => response.json());
+    }
+    mapResponse(res) {
         return res.json().analysis.analysis;
-    };
-    TweetService.prototype.handleError = function (error) {
-        var errMsg;
-        if (error instanceof http_1.Response) {
-            var body = error.json() || '';
-            var err = body.error || JSON.stringify(body);
-            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
+    }
+    handleError(error) {
+        let errMsg;
+        if (error instanceof Response) {
+            const body = error.json() || '';
+            const err = body.error || JSON.stringify(body);
+            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
         }
         else {
             errMsg = error.message ? error.message : error.toString();
         }
         console.error(errMsg);
-        return Observable_1.Observable.throw(errMsg);
-    };
-    return TweetService;
-}());
+        return Observable.throw(errMsg);
+    }
+};
 TweetService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    Injectable(),
+    __metadata("design:paramtypes", [Http])
 ], TweetService);
-exports.TweetService = TweetService;
+export { TweetService };
 //# sourceMappingURL=tweet.service.js.map

@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,52 +7,49 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var platform_browser_1 = require("@angular/platform-browser");
-var home_component_1 = require("./home/home.component");
-var search_component_1 = require("./search/search.component");
-var history_component_1 = require("./history/history.component");
-var history_details_component_1 = require("./history/history-details/history-details.component");
-var router_1 = require("@angular/router");
-var forms_1 = require("@angular/forms");
-var platform_browser_dynamic_1 = require("@angular/platform-browser-dynamic");
-var http_1 = require("@angular/http");
-var AppModule = (function () {
-    function AppModule() {
-    }
-    return AppModule;
-}());
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './search/search.component';
+import { HistoryComponent } from './history/history.component';
+import { HistoryDetailComponent } from './history/history-details/history-details.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { HttpModule } from '@angular/http';
+let AppModule = class AppModule {
+};
 AppModule = __decorate([
-    core_1.NgModule({
+    NgModule({
         imports: [
-            platform_browser_1.BrowserModule,
-            http_1.HttpModule,
-            forms_1.FormsModule,
-            router_1.RouterModule.forRoot([
+            BrowserModule,
+            HttpModule,
+            FormsModule,
+            RouterModule.forRoot([
                 {
                     path: '',
-                    component: search_component_1.SearchComponent
+                    component: SearchComponent
                 },
                 {
                     path: 'search',
-                    component: search_component_1.SearchComponent
+                    component: SearchComponent
                 },
                 {
                     path: 'history',
-                    component: history_component_1.HistoryComponent
+                    component: HistoryComponent
                 },
                 {
                     path: 'history/:word',
-                    component: history_details_component_1.HistoryDetailComponent
+                    component: HistoryDetailComponent
                 }
             ])
         ],
-        declarations: [home_component_1.HomeComponent, search_component_1.SearchComponent, history_component_1.HistoryComponent, history_details_component_1.HistoryDetailComponent],
-        bootstrap: [home_component_1.HomeComponent],
+        declarations: [HomeComponent, SearchComponent, HistoryComponent, HistoryDetailComponent],
+        bootstrap: [HomeComponent],
     }),
     __metadata("design:paramtypes", [])
 ], AppModule);
-exports.AppModule = AppModule;
-var platform = platform_browser_dynamic_1.platformBrowserDynamic();
+export { AppModule };
+const platform = platformBrowserDynamic();
 platform.bootstrapModule(AppModule);
 //# sourceMappingURL=app.module.js.map
